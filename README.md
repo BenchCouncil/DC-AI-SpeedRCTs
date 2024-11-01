@@ -12,7 +12,7 @@ To access the AI.vs.Clinician database, the following steps need to be completed
 
 Our project uses the data version "Original-Recorded-Version" within AI.vs.Clinician database. The patient cohort uses MIMIC databases.
 
-*1. PhysioNet Account*  [Link](https://physionet.org/)
+*(1). PhysioNet Account*  [Link](https://physionet.org/)
 
 First, apply for an account on the PhysioNet platform. Then, proceed to take the CITI PROGRAM exam and obtain the exam report. With the exam report in hand, you can apply for database usage permission on the MIMIC official website.
 
@@ -20,31 +20,54 @@ After completing the aforementioned steps, you can download the relevant MIMIC d
 
 Notice: To access AI.vs.Clinician database, one more step is needed: send an access request to the contributors and provide a description of the research project.
 
-*2. AI.vs.Clinician Database*  [Link](https://www.benchcouncil.org/ai.vs.clinician/)
+*(2). AI.vs.Clinician Database*  [Link](https://www.benchcouncil.org/ai.vs.clinician/)
 
 AI.vs.Clinician is a large and human-centered database that comprises information related to the behavior variations of clinicians’ diagnosis with or without the assistance of different AI models.
 
-*3. MIMIC-III 1.4 Database*  [Link](https://physionet.org/content/mimiciii/1.4/)
+*(3). MIMIC-III 1.4 Database*  [Link](https://physionet.org/content/mimiciii/1.4/)
 
 MIMIC-III is a large-scale clinical intensive care database that is freely available and openly shared. The data covers the period from 2001 to 2012.
 
-*4. MIMIC-IV 2.2 Database*  [Link](https://physionet.org/content/mimiciv/2.2/)
+*(4). MIMIC-IV 2.2 Database*  [Link](https://physionet.org/content/mimiciv/2.2/)
 
 MIMIC-IV is an updated version of MIMIC-III, with data covering the period from 2008 to 2019.
 
-*5. MIMIC-CXR-JPG 2.0.0 Database*  [Link](https://physionet.org/content/mimic-cxr/2.0.0/)
+*(5). MIMIC-CXR-JPG 2.0.0 Database*  [Link](https://physionet.org/content/mimic-cxr/2.0.0/)
 
 The MIMIC-CXR-JPG database is a collection of chest X-ray images in JPG format, corresponding to patients in the MIMIC-IV dataset.
 
-*6. MIMIC-IV-NOTE 2.2 Database* [Link](https://physionet.org/content/mimic-iv-note/2.2/)
+*(6). MIMIC-IV-NOTE 2.2 Database* [Link](https://physionet.org/content/mimic-iv-note/2.2/)
 
 The MIMIC-IV-Note primarily consists of discharge summaries and imaging text reports for patients in the MIMIC-IV dataset.
 
-# 2. TriEntangleFW
+# 2. System Requirements
+The package has been tested on the following systems:
+
+## (1). Hardware Requirements
+- **RAM**: 62 GB
+- **CPU**: 24 cores
+- **GPU**: Tesla V100-PCIE-32G
+- **Operating System**: Linux Ubutu 16.04.7 LTS
+
+## (2). Software Requirements
+- **Python**: 3.7
+- **tsfresh**: 0.20.1
+- **torchxrayvision**: 1.2.1
+- **xgboost**: 1.6.2
+- **optuna**: 3.5.0
+- **matplotlib**: 3.5.3
+- **transformers**: 4.30.2
+- **opencv-python**: 4.8.1.78
+- **nltk**: 3.8.1
+- **rouge-metric**: 1.0.1
+- **torch**: 1.13.1
+
+
+# 3. TriEntangleFW
 
 Clinicians within TriEntangleFW simulator conduct a two-stage diagnosis with or without model assistance. The first stage consists of a rapid bedside assessment based on basic non-laboratory items and the patient's medical history. The second stage involves a comprehensive laboratory diagnosis, incorporating advanced tests such as medical imaging. Here, we use "preliminary" to refer to the first stage and "final" to refer to the second stage.
 
-## 2.1 Data Embedding
+## 3.1 Data Embedding
 
 | No. | Code | Description |
 | ------- | ------- | ------- |
@@ -57,8 +80,8 @@ Clinicians within TriEntangleFW simulator conduct a two-stage diagnosis with or 
 |8|python csv_to_embedding.py|Patient information embedding(including imaging jpg using TorchXRayVision, imaging reports using BioBERT, and temporal examinations using TSFresh).|
 
 
-## 2.2 TriEntangleFW Specialized Simulator for Sepsis
-### 2.2.1 Clinician Click Sequence of Viewed Examination Items Model
+## 3.2 TriEntangleFW Specialized Simulator for Sepsis
+### 3.2.1 Clinician Click Sequence of Viewed Examination Items Model
 
 | No. | Code | Description                                                                                                                      |
 |-----| ------- |----------------------------------------------------------------------------------------------------------------------------------|
@@ -70,7 +93,7 @@ Clinicians within TriEntangleFW simulator conduct a two-stage diagnosis with or 
 | 7   |python predict_nextact.py| Predicting the percentage for the next check expect coxphm data.The predicted results will be loaded into the final model input. |
 
 
-### 2.2.2 Clinician Diagnosis and Diagnosis Time Models (Preliminary and Final)
+### 3.2.2 Clinician Diagnosis and Diagnosis Time Models (Preliminary and Final)
 The final model input data will require patient advanced item Ratio to be tested according to the predicted results from the 'Clinician Click Sequence Model'.
 
 | No. | Code | Description |
@@ -89,12 +112,12 @@ The final model input data will require patient advanced item Ratio to be tested
 |8|python 5_final_sepsis_diagtime.py 'test'|Testing with the specialized model for final diagnosis time.|
 
 
-## 2.3 TriEntangleFW Generalized Simulator for Medicine
+## 3.3 TriEntangleFW Generalized Simulator for Medicine
 Generalized simulator provides general simulation and has no patient sector.
 
 model = 0h or 3h
 
-### 2.3.1 Clinician Diagnosis and Diagnosis Time Models (Preliminary)
+### 3.3.1 Clinician Diagnosis and Diagnosis Time Models (Preliminary)
 | No. | Code | Description |
 | ------- | ------- | ------- |
 |1|cd simulator/data_process/|Change directory.|
@@ -105,8 +128,7 @@ model = 0h or 3h
 |3|python 3_preliminary_{model}_diagtime.py 'train'|Training with the generalized model for preliminary diagnosis time.|
 |3|python 3_preliminary_{model}_diagtime.py 'test'|Testing with the generalized model for preliminary diagnosis time.|
 
-
-### 2.3.2 Patient Advanced Item Ratio to be Tested Model
+### 3.3.2 Patient Advanced Item Ratio to be Tested Model
 | No. | Code | Description |
 | ------- | ------- | ------- |
 |1|cd simulator/data_process/|Change directory.|
@@ -116,10 +138,8 @@ model = 0h or 3h
 |2|python 2_preliminary_{model}_action.py 'test'|Testing with the generalized model for patient advanced item ratio to be tested.|
 |2|python 2_preliminary_{model}_action.py 'predict'|Predicting with the generalized model for patient advanced item ratio to be tested.The predicted results will be loaded into the final model input.|
 
-
-### 2.3.3 Clinician Diagnosis and Diagnosis Time Models (Final)
+### 3.3.3 Clinician Diagnosis and Diagnosis Time Models (Final)
 The final model input data will require the predicted results from model "Patient Advanced Item Ratio to be Tested ".
-
 
 | No. | Code | Description |
 | ------- | ------- | ------- |
@@ -132,7 +152,7 @@ The final model input data will require the predicted results from model "Patien
 |5|python 5_final_{model}_diagtime.py 'test'|Testing with the generalized model for final diagnosis time.|
 
 
-# 3. TriEntangleFW Trials
+# 4. TriEntangleFW Trials
 | No. | Code | Description |
 | ------- | ------- | ------- |
 |1|cd generator/|Change directory.|
@@ -150,7 +170,7 @@ The final model input data will require the predicted results from model "Patien
 |12|python main_normal_nextact_randomdoc.py |Output examination item percentage to be viewed for final diagnosis of virtual clinician. |
 |13|python main_normal_nextact_truedoc.py |Output examination item percentage to be viewed for final diagnosis of human clinician. |
 
-# 4. Usage Example: TriEntangleFW Trials for a New AI model (including data analysis)
+# 5. Usage Example: TriEntangleFW Trials for a New AI model (including data analysis)
 | No. | Code | Description |
 | ------- | ------- | ------- |
 | |cd usage-example-coxphm/|Change directory.|
