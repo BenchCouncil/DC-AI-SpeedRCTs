@@ -1,5 +1,10 @@
 # Triadic Clinical Trial Framework for Rigorous and Cost-effective AI Evaluation in Patient-AI-Clinician Entanglement
 
+# Contents
+- [1. Data Access to AI vs Clinician and MIMIC Databases](#1-data-access-to-ai-vs-clinician-and-mimic-databases)
+- [2. System Requirements](#2-system-requirements)
+- [Data Access to AI vs Clinician and MIMIC Databases](#1-data-access-to-ai-vs-clinician-and-mimic-databases)
+
 
 # 1. Data Access to AI vs Clinician and MIMIC Databases
 TriEntangleFW is constructed based on DC-AI RCTs across 14 medical centers. The collected diagnosis records from DC-AI RCTs are public available from AI.vs.Clinician database, which comprises a set of comma-separated value (CSV) files indicating the interactions between AI and clinicians. 
