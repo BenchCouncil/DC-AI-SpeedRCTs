@@ -1,11 +1,5 @@
 # Triadic Clinical Trial Framework for Rigorous and Cost-effective AI Evaluation in Patient-AI-Clinician Entanglement
 
-# Contents
-- [1. Data Access to AI vs Clinician and MIMIC Databases](#1-data-access-to-ai-vs-clinician-and-mimic-databases)
-- [2. TriEntangleFW](#2-trientanglefw)
-- [TriEntangleFW Trials](#3.triEntanglefw-trials)
-- [Usage Example: TriEntangleFW Trials for a New AI model (including data analysis)](#4.usage-example:-trientanglefw-trials-for-a-new-ai-model (including data analysis))
-
 
 # 1. Data Access to AI vs Clinician and MIMIC Databases
 TriEntangleFW is constructed based on DC-AI RCTs across 14 medical centers. The collected diagnosis records from DC-AI RCTs are public available from AI.vs.Clinician database, which comprises a set of comma-separated value (CSV) files indicating the interactions between AI and clinicians. 
@@ -46,7 +40,7 @@ The MIMIC-CXR-JPG database is a collection of chest X-ray images in JPG format, 
 
 The MIMIC-IV-Note primarily consists of discharge summaries and imaging text reports for patients in the MIMIC-IV dataset.
 
-# 2 TriEntangleFW
+# 2. TriEntangleFW
 
 Clinicians within TriEntangleFW simulator conduct a two-stage diagnosis with or without model assistance. The first stage consists of a rapid bedside assessment based on basic non-laboratory items and the patient's medical history. The second stage involves a comprehensive laboratory diagnosis, incorporating advanced tests such as medical imaging. Here, we use "preliminary" to refer to the first stage and "final" to refer to the second stage.
 
@@ -138,7 +132,7 @@ The final model input data will require the predicted results from model "Patien
 |5|python 5_final_{model}_diagtime.py 'test'|Testing with the generalized model for final diagnosis time.|
 
 
-# 3.TriEntangleFW Trials
+# 3. TriEntangleFW Trials
 | No. | Code | Description |
 | ------- | ------- | ------- |
 |1|cd generator/|Change directory.|
@@ -156,7 +150,7 @@ The final model input data will require the predicted results from model "Patien
 |12|python main_normal_nextact_randomdoc.py |Output examination item percentage to be viewed for final diagnosis of virtual clinician. |
 |13|python main_normal_nextact_truedoc.py |Output examination item percentage to be viewed for final diagnosis of human clinician. |
 
-# 4.Usage Example: TriEntangleFW Trials for a New AI model (including data analysis)
+# 4. Usage Example: TriEntangleFW Trials for a New AI model (including data analysis)
 | No. | Code | Description |
 | ------- | ------- | ------- |
 | |cd usage-example-coxphm/|Change directory.|
