@@ -1,6 +1,14 @@
 # Triadic Clinical Trial Framework for Rigorous and Cost-effective AI Evaluation in Patient-AI-Clinician Entanglement
 
-# 1. Data Access to AI.vs.Clinician and MIMIC Databases.
+# Contents
+- [1.Data Access to AI.vs.Clinician and MIMIC Databases](#1.data-access-to-ai.vs.clinician-and-mimic-databases)
+- [2.TriEntangleFW](#2.trirntanglefw)
+- [3.TriEntangleFW Trials](#3.triEntanglefw-trials)
+- [4.Usage Example: TriEntangleFW Trials for a New AI model (including data analysis)](#4.usage-example:-trientanglefw-trials-for-a-new-ai-model (including data analysis))
+
+
+
+# 1.Data Access to AI.vs.Clinician and MIMIC Databases
 
 TriEntangleFW is constructed based on DC-AI RCTs across 14 medical centers. The collected diagnosis records from DC-AI RCTs are public available from AI.vs.Clinician database, which comprises a set of comma-separated value (CSV) files indicating the interactions between AI and clinicians. 
 
@@ -150,7 +158,7 @@ The final model input data will require the predicted results from model "Patien
 |12|python main_normal_nextact_randomdoc.py |Output examination item percentage to be viewed for final diagnosis of virtual clinician. |
 |13|python main_normal_nextact_truedoc.py |Output examination item percentage to be viewed for final diagnosis of human clinician. |
 
-# 4. Usage Example: TriEntangleFW Trials for a New AI model (including data analysis)
+# 4.Usage Example: TriEntangleFW Trials for a New AI model (including data analysis)
 | No. | Code | Description |
 | ------- | ------- | ------- |
 | |cd usage-example-coxphm/|Change directory.|
