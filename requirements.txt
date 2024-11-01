@@ -1,0 +1,13 @@
+Package                 Version
+----------------------- -------------------
+python                  3.7
+tsfresh                 0.20.1
+torchxrayvision         1.2.1
+xgboost                 1.6.2
+optuna                  3.5.0
+matplotlib              3.5.3
+transformers            4.30.2
+opencv-python           4.8.1.78
+nltk                    3.8.1
+rouge-metric            1.0.1
+torch                   1.13.1
