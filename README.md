@@ -3,7 +3,9 @@
 # Contents
 - [1. Data Access to AI vs Clinician and MIMIC Databases](#1-data-access-to-ai-vs-clinician-and-mimic-databases)
 - [2. System Requirements](#2-system-requirements)
-- [Data Access to AI vs Clinician and MIMIC Databases](#1-data-access-to-ai-vs-clinician-and-mimic-databases)
+- [3. TriEntangleFW](#3-trientanglefw)
+- [4. TriEntangleFW Trials](#4-trientanglefw-trials)
+- [5. Usage Example: TriEntangleFW Trials for a New AI model](#5-usage-example-trientanglefw-trials-for-a-new-ai-model-including-data-analysis)
 
 
 # 1. Data Access to AI vs Clinician and MIMIC Databases
