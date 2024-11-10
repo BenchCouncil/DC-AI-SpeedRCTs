@@ -3,13 +3,13 @@
 # Contents
 - [1. Data Access to AI vs Clinician and MIMIC Databases](#1-data-access-to-ai-vs-clinician-and-mimic-databases)
 - [2. System Requirements](#2-system-requirements)
-- [3. TriEntangleFW](#3-trientanglefw)
-- [4. TriEntangleFW Trials](#4-trientanglefw-trials)
-- [5. Usage Example: TriEntangleFW Trials for a New AI model](#5-usage-example-trientanglefw-trials-for-a-new-ai-model-including-data-analysis)
+- [3. DC-AI-SpeedRCTs](#3-dc-ai-speedrcts)
+- [4. DC-AI-SpeedRCTs Trials](#4-dc-ai-speedrcts-trials)
+- [5. Usage Example: DC-AI-SpeedRCTs Trials for a New AI model](#5-usage-example-dc-ai-speedrcts-trials-for-a-new-ai-model-including-data-analysis)
 
 
 # 1. Data Access to AI vs Clinician and MIMIC Databases
-TriEntangleFW is constructed based on DC-AI RCTs across 14 medical centers. The collected diagnosis records from DC-AI RCTs are public available from AI.vs.Clinician database, which comprises a set of comma-separated value (CSV) files indicating the interactions between AI and clinicians. 
+DC-AI-SpeedRCTs is constructed based on DC-AI RCTs across 14 medical centers. The collected diagnosis records from DC-AI RCTs are public available from AI.vs.Clinician database, which comprises a set of comma-separated value (CSV) files indicating the interactions between AI and clinicians. 
 
 To access the AI.vs.Clinician database, the following steps need to be completed:
  
@@ -70,9 +70,9 @@ The package has been tested on the following systems:
 - **torch**: 1.13.1
 
 
-# 3. TriEntangleFW
+# 3. DC-AI-SpeedRCTs
 
-Clinicians within TriEntangleFW simulator conduct a two-stage diagnosis with or without model assistance. The first stage consists of a rapid bedside assessment based on basic non-laboratory items and the patient's medical history. The second stage involves a comprehensive laboratory diagnosis, incorporating advanced tests such as medical imaging. Here, we use "preliminary" to refer to the first stage and "final" to refer to the second stage.
+Clinicians within DC-AI-SpeedRCTs simulator conduct a two-stage diagnosis with or without model assistance. The first stage consists of a rapid bedside assessment based on basic non-laboratory items and the patient's medical history. The second stage involves a comprehensive laboratory diagnosis, incorporating advanced tests such as medical imaging. Here, we use "preliminary" to refer to the first stage and "final" to refer to the second stage.
 
 ## 3.1 Data Embedding
 
@@ -87,7 +87,7 @@ Clinicians within TriEntangleFW simulator conduct a two-stage diagnosis with or 
 |8|python csv_to_embedding.py|Patient information embedding(including imaging jpg using TorchXRayVision, imaging reports using BioBERT, and temporal examinations using TSFresh).|
 
 
-## 3.2 TriEntangleFW Specialized Simulator for Sepsis
+## 3.2 DC-AI-SpeedRCTs Specialized Simulator for Sepsis
 ### 3.2.1 Clinician Click Sequence of Viewed Examination Items Model
 
 | No. | Code | Description                                                                                                                      |
@@ -119,7 +119,7 @@ The final model input data will require patient advanced item Ratio to be tested
 |8|python 5_final_sepsis_diagtime.py 'test'|Testing with the specialized model for final diagnosis time.|
 
 
-## 3.3 TriEntangleFW Generalized Simulator for Medicine
+## 3.3 DC-AI-SpeedRCTs Generalized Simulator for Medicine
 Generalized simulator provides general simulation and has no patient sector.
 
 model = 0h or 3h
@@ -159,7 +159,7 @@ The final model input data will require the predicted results from model "Patien
 |5|python 5_final_{model}_diagtime.py 'test'|Testing with the generalized model for final diagnosis time.|
 
 
-# 4. TriEntangleFW Trials
+# 4. DC-AI-SpeedRCTs Trials
 | No. | Code | Description |
 | ------- | ------- | ------- |
 |1|cd generator/|Change directory.|
@@ -169,7 +169,7 @@ The final model input data will require the predicted results from model "Patien
 |5|python randomdoc_sepsis_nextact_predict.py |Predicting the advanced item ratio for patients using virtual clinician. The predicted results will be loaded into the final model input.|
 |6|python randomdoc_first_final_embedding.py |Generating model input data. (Including Virtual Clinician, Model and Patient information.)|
 | |cd generator/ramdomdoc_analyze/ |Switch Path.|
-|7|vi randomdoc_constant.py |Choose TriEntangleFW Simulator model between Specialized 0h, Generalized 0h, or Generalized 3h. |
+|7|vi randomdoc_constant.py |Choose DC-AI-SpeedRCTs Simulator model between Specialized 0h, Generalized 0h, or Generalized 3h. |
 |8|python main_diag_randomdoc.py |Output the number of samples, the diagnosis accuracy of virtual clinician. |
 |9|python main_diag_truedoc.py |Output the number of samples, the diagnosis accuracy of human clinician.|
 |10|python main_diagtime_randomdoc.py|Output the number of samples, the diagnosis time of virtual clinician. |
@@ -177,7 +177,7 @@ The final model input data will require the predicted results from model "Patien
 |12|python main_normal_nextact_randomdoc.py |Output examination item percentage to be viewed for final diagnosis of virtual clinician. |
 |13|python main_normal_nextact_truedoc.py |Output examination item percentage to be viewed for final diagnosis of human clinician. |
 
-# 5. Usage Example: TriEntangleFW Trials for a New AI model (including data analysis)
+# 5. Usage Example: DC-AI-SpeedRCTs Trials for a New AI model (including data analysis)
 | No. | Code | Description |
 | ------- | ------- | ------- |
 | |cd usage-example-coxphm/|Change directory.|
@@ -189,7 +189,7 @@ The final model input data will require the predicted results from model "Patien
 |4|python 3h/2_preliminary_3h_action.py 'predict'|Predicting with the generalized 3h model for patient advanced item ratio to be tested on the coxphm data.The predicted results will be loaded into the final model input. |
 | |cd usage-example-coxphm/|Change directory.|
 |5|python coxphm_feature_embedding.py '***_final'|Generating final specialized and generalized model input data on the coxphm.(Including Clinician, Model and Patient information.)|
-|6|vi model_name_constant.py |Choose TriEntangleFW Simulator model between Specialized 0h, Generalized 0h, or Generalized 3h. |
+|6|vi model_name_constant.py |Choose DC-AI-SpeedRCTs Simulator model between Specialized 0h, Generalized 0h, or Generalized 3h. |
 |7|python main_diag_coxphm.py |Output the number of samples, the diagnosis accuracy of human clinician or virtual clinician on the coxphm data. |
 |8|python main_diagtime_coxphm.py|Output the number of samples, the diagnosis time of human clinician or virtual clinician on the coxphm data.|
 |9|python main_nextact_coxphm.py |Output examination item percentage to be viewed for final diagnosis of human clinician or virtual clinician on the coxphm data. |
