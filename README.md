@@ -50,13 +50,13 @@ The MIMIC-IV-Note primarily consists of discharge summaries and imaging text rep
 # 2. System Requirements
 The package has been tested on the following systems:
 
-## (1). Hardware Requirements
+## 2.1 Hardware Requirements
 - **RAM**: 62 GB
 - **CPU**: 24 cores
 - **GPU**: Tesla V100-PCIE-32G
 - **Operating System**: Linux Ubutu 16.04.7 LTS
 
-## (2). Software Requirements
+## 2.2 Software Requirements
 - **Python**: 3.7
 - **tsfresh**: 0.20.1
 - **torchxrayvision**: 1.2.1
