@@ -7,7 +7,6 @@
 - [4. Train and test DC-AI-SpeedRCTs](#4-train-and-test-dc-ai-speedrcts)
 - [5. Guide for performing DC-AI-SpeedRCTs Trials](#5-guide-for-performing-dc-ai-speedrcts-trials)
 - [6. Usage Example: DC-AI-SpeedRCTs Trials for a New AI model](#6-usage-example-dc-ai-speedrcts-trials-for-a-new-ai-model-including-data-analysis)
-- [7. Demo](#7-demo)
 
 
 # 1. Data Access to AI vs Clinician and MIMIC Databases
@@ -190,6 +189,7 @@ The final model input data will require the predicted results from model "Patien
 |12|python main_normal_nextact_randomdoc.py |Output examination item percentage to be viewed for final diagnosis of virtual clinician. |
 |13|python main_normal_nextact_truedoc.py |Output examination item percentage to be viewed for final diagnosis of human clinician. |
 
+
 # 6. Usage Example: DC-AI-SpeedRCTs Trials for a New AI model (including data analysis)
 | No. | Code | Description |
 | ------- | ------- | ------- |
@@ -206,7 +206,3 @@ The final model input data will require the predicted results from model "Patien
 |7|python main_diag_coxphm.py |Output the number of samples, the diagnosis accuracy of human clinician or virtual clinician on the coxphm data. |
 |8|python main_diagtime_coxphm.py|Output the number of samples, the diagnosis time of human clinician or virtual clinician on the coxphm data.|
 |9|python main_nextact_coxphm.py |Output examination item percentage to be viewed for final diagnosis of human clinician or virtual clinician on the coxphm data. |
-
-
-# 7. Demo
-
