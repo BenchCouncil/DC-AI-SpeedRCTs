@@ -1,11 +1,13 @@
-# Triadic Clinical Trial Framework for Rigorous and Cost-effective AI Evaluation in Patient-AI-Clinician Entanglement
+# Rigorous and Cost-effective Clinical Trial of AI Models Considering Patient-AI-Clinician Entanglement
 
 # Contents
 - [1. Data Access to AI vs Clinician and MIMIC Databases](#1-data-access-to-ai-vs-clinician-and-mimic-databases)
-- [2. System Requirements](#2-system-requirements)
-- [3. DC-AI-SpeedRCTs](#3-dc-ai-speedrcts)
-- [4. DC-AI-SpeedRCTs Trials](#4-dc-ai-speedrcts-trials)
-- [5. Usage Example: DC-AI-SpeedRCTs Trials for a New AI model](#5-usage-example-dc-ai-speedrcts-trials-for-a-new-ai-model-including-data-analysis)
+- [2. Repo Contents](#2-repo-contents)
+- [3. System Requirements](#3-system-requirements)
+- [4. Train and test DC-AI-SpeedRCTs](#4-train-and-test-dc-ai-speedrcts)
+- [5. Guide for performing DC-AI-SpeedRCTs Trials](#5-guide-for-performing-dc-ai-speedrcts-trials)
+- [6. Usage Example: DC-AI-SpeedRCTs Trials for a New AI model](#6-usage-example-dc-ai-speedrcts-trials-for-a-new-ai-model-including-data-analysis)
+- [7. Demo](#7-demo)
 
 
 # 1. Data Access to AI vs Clinician and MIMIC Databases
@@ -47,16 +49,19 @@ The MIMIC-CXR-JPG database is a collection of chest X-ray images in JPG format, 
 
 The MIMIC-IV-Note primarily consists of discharge summaries and imaging text reports for patients in the MIMIC-IV dataset.
 
-# 2. System Requirements
+# 2. Repo Contents
+
+
+# 3. System Requirements
 The package has been tested on the following systems:
 
-## 2.1 Hardware Requirements
+## 3.1 Hardware Requirements
 - **RAM**: 62 GB
 - **CPU**: 24 cores
 - **GPU**: Tesla V100-PCIE-32G
 - **Operating System**: Linux Ubutu 16.04.7 LTS
 
-## 2.2 Software Requirements
+## 3.2 Software Requirements
 - **Python**: 3.7
 - **tsfresh**: 0.20.1
 - **torchxrayvision**: 1.2.1
@@ -70,11 +75,11 @@ The package has been tested on the following systems:
 - **torch**: 1.13.1
 
 
-# 3. DC-AI-SpeedRCTs
+# 4. Train and test DC-AI-SpeedRCTs
 
 Clinicians within DC-AI-SpeedRCTs simulator conduct a two-stage diagnosis with or without model assistance. The first stage consists of a rapid bedside assessment based on basic non-laboratory items and the patient's medical history. The second stage involves a comprehensive laboratory diagnosis, incorporating advanced tests such as medical imaging. Here, we use "preliminary" to refer to the first stage and "final" to refer to the second stage.
 
-## 3.1 Data Embedding
+## 4.1 Data Embedding
 
 | No. | Code | Description |
 | ------- | ------- | ------- |
@@ -87,8 +92,8 @@ Clinicians within DC-AI-SpeedRCTs simulator conduct a two-stage diagnosis with o
 |8|python csv_to_embedding.py|Patient information embedding(including imaging jpg using TorchXRayVision, imaging reports using BioBERT, and temporal examinations using TSFresh).|
 
 
-## 3.2 DC-AI-SpeedRCTs Specialized Simulator for Sepsis
-### 3.2.1 Clinician Click Sequence of Viewed Examination Items Model
+## 4.2 DC-AI-SpeedRCTs Specialized Simulator for Sepsis
+### 4.2.1 Clinician Click Sequence of Viewed Examination Items Model
 
 | No. | Code | Description                                                                                                                      |
 |-----| ------- |----------------------------------------------------------------------------------------------------------------------------------|
@@ -100,7 +105,7 @@ Clinicians within DC-AI-SpeedRCTs simulator conduct a two-stage diagnosis with o
 | 7   |python predict_nextact.py| Predicting the percentage for the next check expect coxphm data.The predicted results will be loaded into the final model input. |
 
 
-### 3.2.2 Clinician Diagnosis and Diagnosis Time Models (Preliminary and Final)
+### 4.2.2 Clinician Diagnosis and Diagnosis Time Models (Preliminary and Final)
 The final model input data will require patient advanced item Ratio to be tested according to the predicted results from the 'Clinician Click Sequence Model'.
 
 | No. | Code | Description |
@@ -119,12 +124,12 @@ The final model input data will require patient advanced item Ratio to be tested
 |8|python 5_final_sepsis_diagtime.py 'test'|Testing with the specialized model for final diagnosis time.|
 
 
-## 3.3 DC-AI-SpeedRCTs Generalized Simulator for Medicine
+## 4.3 DC-AI-SpeedRCTs Generalized Simulator for Medicine
 Generalized simulator provides general simulation and has no patient sector.
 
 model = 0h or 3h
 
-### 3.3.1 Clinician Diagnosis and Diagnosis Time Models (Preliminary)
+### 4.3.1 Clinician Diagnosis and Diagnosis Time Models (Preliminary)
 | No. | Code | Description |
 | ------- | ------- | ------- |
 |1|cd simulator/data_process/|Change directory.|
@@ -135,7 +140,7 @@ model = 0h or 3h
 |3|python 3_preliminary_{model}_diagtime.py 'train'|Training with the generalized model for preliminary diagnosis time.|
 |3|python 3_preliminary_{model}_diagtime.py 'test'|Testing with the generalized model for preliminary diagnosis time.|
 
-### 3.3.2 Patient Advanced Item Ratio to be Tested Model
+### 4.3.2 Patient Advanced Item Ratio to be Tested Model
 | No. | Code | Description |
 | ------- | ------- | ------- |
 |1|cd simulator/data_process/|Change directory.|
@@ -145,7 +150,7 @@ model = 0h or 3h
 |2|python 2_preliminary_{model}_action.py 'test'|Testing with the generalized model for patient advanced item ratio to be tested.|
 |2|python 2_preliminary_{model}_action.py 'predict'|Predicting with the generalized model for patient advanced item ratio to be tested.The predicted results will be loaded into the final model input.|
 
-### 3.3.3 Clinician Diagnosis and Diagnosis Time Models (Final)
+### 4.3.3 Clinician Diagnosis and Diagnosis Time Models (Final)
 The final model input data will require the predicted results from model "Patient Advanced Item Ratio to be Tested ".
 
 | No. | Code | Description |
@@ -159,7 +164,7 @@ The final model input data will require the predicted results from model "Patien
 |5|python 5_final_{model}_diagtime.py 'test'|Testing with the generalized model for final diagnosis time.|
 
 
-# 4. DC-AI-SpeedRCTs Trials
+# 5. DC-AI-SpeedRCTs Trials
 | No. | Code | Description |
 | ------- | ------- | ------- |
 |1|cd generator/|Change directory.|
@@ -177,7 +182,7 @@ The final model input data will require the predicted results from model "Patien
 |12|python main_normal_nextact_randomdoc.py |Output examination item percentage to be viewed for final diagnosis of virtual clinician. |
 |13|python main_normal_nextact_truedoc.py |Output examination item percentage to be viewed for final diagnosis of human clinician. |
 
-# 5. Usage Example: DC-AI-SpeedRCTs Trials for a New AI model (including data analysis)
+# 6. Usage Example: DC-AI-SpeedRCTs Trials for a New AI model (including data analysis)
 | No. | Code | Description |
 | ------- | ------- | ------- |
 | |cd usage-example-coxphm/|Change directory.|
