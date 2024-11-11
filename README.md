@@ -51,6 +51,14 @@ The MIMIC-IV-Note primarily consists of discharge summaries and imaging text rep
 
 # 2. Repo Contents
 
+DC-AI SpeedRCTs: A triadic clinical trial framework to simulate patient-AI-clinician entanglement
+
+**(1) simulator** This directory contains all the code for Clinician Diagnostic Behavior Simulator.
+
+**(2) generator** This directory contains all the code for Clinical Diagnostic Environment Generator.
+
+**(3) usage-example-coxphm** This directory contains all the code for a new AI device performs in DC-AI SpeedRCTs simulator.
+
 
 # 3. System Requirements
 The package has been tested on the following systems:
@@ -164,7 +172,7 @@ The final model input data will require the predicted results from model "Patien
 |5|python 5_final_{model}_diagtime.py 'test'|Testing with the generalized model for final diagnosis time.|
 
 
-# 5. DC-AI-SpeedRCTs Trials
+# 5. Guide for performing DC-AI-SpeedRCTs Trials
 | No. | Code | Description |
 | ------- | ------- | ------- |
 |1|cd generator/|Change directory.|
@@ -198,3 +206,7 @@ The final model input data will require the predicted results from model "Patien
 |7|python main_diag_coxphm.py |Output the number of samples, the diagnosis accuracy of human clinician or virtual clinician on the coxphm data. |
 |8|python main_diagtime_coxphm.py|Output the number of samples, the diagnosis time of human clinician or virtual clinician on the coxphm data.|
 |9|python main_nextact_coxphm.py |Output examination item percentage to be viewed for final diagnosis of human clinician or virtual clinician on the coxphm data. |
+
+
+# 7. Demo
+
